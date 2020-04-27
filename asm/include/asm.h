@@ -15,7 +15,8 @@ int display_help(void);
 void my_putchar(char c);
 void my_putstr(char const *str);
 int my_strlen(char *const str);
-int write_error(char *str);
+int write_error(char const *str);
+int my_strcmp(char const *str1, char const *str2);
 
 /* RETURN VALUES */
 static const int ERROR = 84;
