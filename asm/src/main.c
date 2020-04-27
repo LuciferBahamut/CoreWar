@@ -9,5 +9,9 @@
 
 int main(int ac, char **av)
 {
+    if (ac != 2)
+        return (write_error(ERROR_ARG));
+    if (my_strcmp(av[1], "-h"))
+        return (display_help());
     return (SUCCESS);
 }
