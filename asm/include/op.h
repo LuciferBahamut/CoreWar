@@ -35,10 +35,10 @@ typedef char args_type_t;
 
 /* register */
 #define T_REG 1
-/* direct  (ld  #1,r1  put 1 into r1) */
+/* direct  (ld  #1, r1  put 1 into r1) */
 #define T_DIR 2
 /* indirect always relative
-( ld 1,r1 put what's in the address (1+pc)
+( ld 1, r1 put what's in the address (1+pc)
 into r1 (4 bytes )) */
 #define T_IND 4
 /* LABEL */
@@ -46,12 +46,12 @@ into r1 (4 bytes )) */
 
 typedef struct  op_s
 {
-   char         *mnemonique;
-   char         nbr_args;
-   args_type_t  type[MAX_ARGS_NUMBER];
-   char         code;
-   int          nbr_cycles;
-   char         *comment;
+    char *mnemonique;
+    char nbr_args;
+    args_type_t type[MAX_ARGS_NUMBER];
+    char code;
+    int nbr_cycles;
+    char *comment;
 } op_t;
 
 /* size (in bytes) */
@@ -68,10 +68,10 @@ extern  op_t    op_tab[];
 
 typedef struct header_s
 {
-   int  magic;
-   char prog_name[PROG_NAME_LENGTH + 1];
-   int  prog_size;
-   char comment[COMMENT_LENGTH + 1];
+    int magic;
+    char prog_name[PROG_NAME_LENGTH + 1];
+    int prog_size;
+    char comment[COMMENT_LENGTH + 1];
 } header_t;
 
 /* live */
