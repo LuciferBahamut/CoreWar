@@ -9,11 +9,9 @@ NAME	=	asm
 
 SRC	=	src/main.c 		\
 		src/display_help.c	\
-		util/my_strlen.c	\
-		util/my_putchar.c	\
-		util/my_putstr.c	\
-		util/my_strcmp.c	\
-		util/write_error.c
+		src/get_name.c		\
+		src/get_data.c		\
+		$(wildcard util/*.c)
 
 CC	?=	gcc
 
