@@ -25,6 +25,6 @@ static const int TRUE = 1;
 static const int FASLE = 0;
 
 /* ERROR MESSAGES */
-static const char ERROR_ARG[] = "this program must take a file as an argument\n";
+static const char ERROR_ARG[] = "this program must take a file as an argument";
 
 #endif /* _ASM_H_ */
