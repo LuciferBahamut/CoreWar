@@ -6,10 +6,6 @@
 */
 
 #include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <fcntl.h>
 #include "asm.h"
 
 static char *copy_name(char *file, int temp, int size)
@@ -48,12 +44,9 @@ static char *without_path(char *file)
 
 char *get_name(char *file)
 {
-    int fd = open(file, O_RDONLY);
     char *name;
     int i = 0;
 
-    if (fd == -1)
-        return (NULL);
     if ((file = without_path(file)) == NULL)
         return (NULL);
     if ((name = malloc(sizeof(char) * (my_strlen(file) + 6))) == NULL)
@@ -68,7 +61,5 @@ char *get_name(char *file)
     name[i + 2] = 'o';
     name[i + 3] = 'r';
     name[i + 4] = '\0';
-    free(file);
-    close(fd);
     return (name);
 }

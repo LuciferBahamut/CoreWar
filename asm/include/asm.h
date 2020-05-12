@@ -12,6 +12,8 @@ typedef struct core_s
 {
     char *name;
     char **data;
+    char **header;
+    char *champ;
 } core_t;
 
 /* HELP */
@@ -20,6 +22,8 @@ int display_help(void);
 /* FILL CORE */
 char *get_name(char *file);
 char **get_data(char *file);
+char *get_champ(char **str);
+char **get_header(char **str);
 
 /* UTIL FUNCTIONS */
 void my_putchar(char c);
