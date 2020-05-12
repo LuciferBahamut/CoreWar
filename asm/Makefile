@@ -29,6 +29,9 @@ all	:	$(OBJ)
 tests_run	:
 		$(CC) -o unit_tests src/*.c $(CFFLAGS)
 
+debug	:	CFLAGS += -g
+debug	:	re
+
 clean	:
 		rm -f $(OBJ)
 
