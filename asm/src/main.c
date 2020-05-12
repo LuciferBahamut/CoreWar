@@ -12,23 +12,30 @@
 #include <fcntl.h>
 #include "asm.h"
 
-static int check_file(char *file)
+static int check_file(char *file, core_t *core)
 {
     int fd = open(file, O_RDONLY);
+    int i = 0;
 
     if (fd == -1)
         return (TRUE);
     close(fd);
+    core->file = malloc(sizeof(char) * (my_strlen(file) + 1));
+    if (core->file == NULL)
+        return (FALSE);
+    for (i = 0; file[i] != '\0'; i++)
+        core->file[i] = file[i];
+    core->file[i] = '\0';
     return (FALSE);
 }
 
 static int fill_core(core_t *core, char *file)
 {
-    if (check_file(file) || (core->name = get_name(file)) == NULL)
+    if (check_file(file, core) || (core->name = get_name(file)) == NULL)
         return (TRUE);
     core->data = get_data(file);
-    core->header = get_header(core->data);
-    core->champ = get_champ(core->data);
+    if (get_champ(core))
+        return (TRUE);
     return (FALSE);
 }
 
@@ -36,7 +43,12 @@ static int start(char *file)
 {
     core_t *core = malloc(sizeof(core_t));
 
-    if (core == NULL || fill_core(core, file))
+    if (core == NULL)
+        return (ERROR);
+    core->head = malloc(sizeof(header_t));
+    if (core->head == NULL)
+        return (ERROR);
+    if (fill_core(core, file))
         return (ERROR);
     return (SUCCESS);
 }

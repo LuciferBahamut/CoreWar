@@ -8,12 +8,15 @@
 #ifndef _ASM_H_
 #define _ASM_H_
 
+#include "op.h"
+
 typedef struct core_s
 {
+    char *file;
     char *name;
     char **data;
-    char **header;
-    char *champ;
+    header_t *head;
+    int error_line;
 } core_t;
 
 /* HELP */
@@ -22,16 +25,18 @@ int display_help(void);
 /* FILL CORE */
 char *get_name(char *file);
 char **get_data(char *file);
-char *get_champ(char **str);
-char **get_header(char **str);
+int get_champ(core_t *core);
 
 /* UTIL FUNCTIONS */
 void my_putchar(char c);
+void my_putchar_error(char c);
 void my_putstr(char const *str);
 int my_strlen(char *const str);
 int write_error(char const *str);
 int my_strcmp(char const *str1, char const *str2);
 char **my_split(char *src, char c);
+int my_put_nbr_error(int nb);
+int my_put_nbr(int nb);
 
 /* RETURN VALUES */
 static const int ERROR = 84;
