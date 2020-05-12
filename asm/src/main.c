@@ -6,18 +6,33 @@
 */
 
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include "asm.h"
 
-int fill_core(core_t *core, char *file)
+static int check_file(char *file)
 {
-    if ((core->name = get_name(file)) == NULL)
+    int fd = open(file, O_RDONLY);
+
+    if (fd == -1)
         return (TRUE);
-    core->data = get_data(file);
+    close(fd);
     return (FALSE);
 }
 
-int start(char *file)
+static int fill_core(core_t *core, char *file)
+{
+    if (check_file(file) || (core->name = get_name(file)) == NULL)
+        return (TRUE);
+    core->data = get_data(file);
+    core->header = get_header(core->data);
+    core->champ = get_champ(core->data);
+    return (FALSE);
+}
+
+static int start(char *file)
 {
     core_t *core = malloc(sizeof(core_t));
 

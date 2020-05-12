@@ -11,6 +11,8 @@ SRC	=	src/main.c 		\
 		src/display_help.c	\
 		src/get_name.c		\
 		src/get_data.c		\
+		src/get_champ.c		\
+		src/get_header.c	\
 		$(wildcard util/*.c)
 
 CC	?=	gcc
