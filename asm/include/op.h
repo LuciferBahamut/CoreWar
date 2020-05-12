@@ -75,7 +75,7 @@ typedef struct header_s
 } header_t;
 
 /* live */
-/* number of cycle before beig declared dead */
+/* number of cycle before being declared dead */
 #define CYCLE_TO_DIE 1536
 #define CYCLE_DELTA 5
 #define NBR_LIVE 40
