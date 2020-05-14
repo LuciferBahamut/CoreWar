@@ -7,11 +7,12 @@
 
 NAME	=	asm
 
-SRC	=	src/main.c 		\
-		src/display_help.c	\
-		src/get_name.c		\
-		src/get_data.c		\
-		src/get_champ.c		\
+SRC	=	src/main.c 			\
+		src/display_help.c		\
+		src/get_name.c			\
+		src/get_data.c			\
+		src/get_champ.c			\
+		src/print_the_error.c		\
 		$(wildcard util/*.c)
 
 CC	?=	gcc

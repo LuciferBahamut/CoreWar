@@ -24,7 +24,7 @@ int display_help(void);
 
 /* FILL CORE */
 char *get_name(char *file);
-char **get_data(char *file);
+char **get_data(char *file, core_t *core);
 int get_champ(core_t *core);
 
 /* UTIL FUNCTIONS */
@@ -38,6 +38,9 @@ char **my_split(char *src, char c);
 int my_put_nbr_error(int nb);
 int my_put_nbr(int nb);
 
+/* DISPLAY ERROR */
+void my_error(core_t *core, int i, const char *error);
+
 /* RETURN VALUES */
 static const int ERROR = 84;
 static const int SUCCESS = 0;
@@ -46,5 +49,7 @@ static const int FALSE = 0;
 
 /* ERROR MESSAGES */
 static const char ERROR_ARG[] = "this program must take a file as an argument";
+static const char STR_ERROR_NAME[] = ": The program name is too long.\n";
+static const char STR_ERROR_CHAR[] = ": Undefined label.\n";
 
 #endif /* _ASM_H_ */

@@ -33,7 +33,8 @@ static int fill_core(core_t *core, char *file)
 {
     if (check_file(file, core) || (core->name = get_name(file)) == NULL)
         return (TRUE);
-    core->data = get_data(file);
+    if ((core->data = get_data(file, core)) == NULL)
+        return (TRUE);
     if (get_champ(core))
         return (TRUE);
     return (FALSE);
@@ -61,6 +62,5 @@ int main(int ac, char **av)
     }
     if (my_strcmp(av[1], "-h"))
         return (display_help());
-    else
-        return (start(av[1]));
+    return (start(av[1]));
 }

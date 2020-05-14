@@ -8,15 +8,6 @@
 #include <stdlib.h>
 #include "asm.h"
 
-static void my_error(core_t *core, int i)
-{
-    write_error("asm, ");
-    write_error(core->file);
-    write_error(", line ");
-    my_put_nbr_error(i);
-    write_error(": The program name is too long.\n");
-}
-
 static int my_spe_cmp(char *str)
 {
     int i = 0;
@@ -50,7 +41,7 @@ int get_champ(core_t *core)
         name[k] = core->data[i][j];
     name[k] = '\0';
     if ((my_strlen(name) - 2) > PROG_NAME_LENGTH) {
-        my_error(core, i);
+        my_error(core, i, STR_ERROR_NAME);
         return (TRUE);
     }
     else
