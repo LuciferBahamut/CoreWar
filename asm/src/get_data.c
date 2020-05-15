@@ -92,7 +92,6 @@ char **get_data(char *file, core_t *core)
         for (int j = 0; buff[j] != '\0'; j++)
             str[i][j] = buff[j];
         str[i][my_strlen(buff)] = '\0';
-        printf("%s", str[i]);
     }
     if (i == 0 || check_all_lines(str, core))
         return (NULL);
