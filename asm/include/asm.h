@@ -51,5 +51,7 @@ static const int FALSE = 0;
 static const char ERROR_ARG[] = "this program must take a file as an argument";
 static const char STR_ERROR_NAME[] = ": The program name is too long.\n";
 static const char STR_ERROR_CHAR[] = ": Undefined label.\n";
+static const char STR_ERROR_INST[] = ": Invalid instruction.\n";
+static const char STR_ERROR_NONAME[] = ": No name specified.\n";
 
 #endif /* _ASM_H_ */

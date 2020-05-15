@@ -25,9 +25,23 @@ static int check_pos_name(char **str)
 {
     int i = 0;
 
-    for (; str[i][0] != '.'; i++);
+    if (str[i] == NULL)
+        return (-1);
+    for (; str[i][0] != '.'; i++) {
+        if (str[i + 1] == NULL)
+            return (-2);
+    }
     for (; my_spe_cmp(str[i]) != TRUE; i++);
     return (i);
+}
+
+static int display_errors(core_t *core, int i)
+{
+    if (i == -1)
+        my_error(core, 1, STR_ERROR_INST);
+    else
+        my_error(core, 1, STR_ERROR_NONAME);
+    return (TRUE);
 }
 
 int get_champ(core_t *core)
@@ -36,6 +50,8 @@ int get_champ(core_t *core)
     int k = 0;
     char *name;
 
+    if (i < 0)
+        return (display_errors(core, i));
     name = malloc(sizeof(char) * my_strlen(core->data[i]));
     for (int j = 6; core->data[i][j] != '\0'; j++, k++)
         name[k] = core->data[i][j];

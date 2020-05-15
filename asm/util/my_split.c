@@ -46,7 +46,7 @@ char **my_split(char *src, char c)
 
     str = my_split_alloc(src, str, c);
     for (int i = 0, j = 0; src[i] != '\0'; i++, k++) {
-        if (src[i] == c) {
+        if (src[i] == c || src[i] == '\0') {
             str[j][k] = '\0';
             j++;
             i++;
