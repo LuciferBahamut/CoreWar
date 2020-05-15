@@ -35,7 +35,7 @@ static int fill_core(core_t *core, char *file)
         return (TRUE);
     if ((core->data = get_data(file, core)) == NULL)
         return (TRUE);
-    if (get_champ(core))
+    if (get_champ(core) || get_comment(core))
         return (TRUE);
     return (FALSE);
 }

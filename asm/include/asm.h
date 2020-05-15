@@ -26,6 +26,7 @@ int display_help(void);
 char *get_name(char *file);
 char **get_data(char *file, core_t *core);
 int get_champ(core_t *core);
+int get_comment(core_t *core);
 
 /* UTIL FUNCTIONS */
 void my_putchar(char c);
@@ -47,10 +48,19 @@ static const int TRUE = 1;
 static const int FALSE = 0;
 
 /* ERROR MESSAGES */
+// args
 static const char ERROR_ARG[] = "this program must take a file as an argument";
-static const char STR_ERROR_NAME[] = ": The program name is too long.\n";
+
+// undefined char
 static const char STR_ERROR_CHAR[] = ": Undefined label.\n";
 static const char STR_ERROR_INST[] = ": Invalid instruction.\n";
+
+// name
+static const char STR_ERROR_NAME[] = ": The program name is too long.\n";
 static const char STR_ERROR_NONAME[] = ": No name specified.\n";
+
+// comment
+static const char STR_WAR_NOCOMMENT[] = ": Warning : No comment specified.\n";
+static const char STR_ERROR_TOOLONGCOM[] = ": The comment is too long.\n";
 
 #endif /* _ASM_H_ */
