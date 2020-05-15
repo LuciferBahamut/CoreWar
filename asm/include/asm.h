@@ -34,7 +34,6 @@ void my_putstr(char const *str);
 int my_strlen(char *const str);
 int write_error(char const *str);
 int my_strcmp(char const *str1, char const *str2);
-char **my_split(char *src, char c);
 int my_put_nbr_error(int nb);
 int my_put_nbr(int nb);
 

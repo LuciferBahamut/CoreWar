@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdio.h>
 #include "asm.h"
 
 static int compare_with_label_chars(char c)
@@ -51,12 +52,13 @@ static int check_all_lines(char **split, core_t *core)
     return (FALSE);
 }
 
-char **get_data(char *file, core_t *core)
+static char **malloc_str(char *file)
 {
-    char **str;
     int fd = open(file, O_RDONLY);
     char buff;
     char *stock = malloc(sizeof(char) * 2);
+    int j = 0;
+    char **str;
 
     if (fd == -1 || stock == NULL)
         return (NULL);
@@ -65,10 +67,34 @@ char **get_data(char *file, core_t *core)
         stock[i + 1] = '\0';
         stock = realloc(stock, sizeof(char) * (my_strlen(stock) + 2));
     }
-    str = my_split(stock, '\n');
+    for (int i = 0; stock[i] != '\0'; i++)
+        if (stock[i] == '\n')
+            j++;
+    str = malloc(sizeof(char *) * (j + 2));
+    str[j + 1] = NULL;
     free(stock);
-    if (check_all_lines(str, core))
-        return (NULL);
     close(fd);
+    return (str);
+}
+
+char **get_data(char *file, core_t *core)
+{
+    char **str = malloc_str(file);
+    size_t size = 10;
+    char *buff = malloc(sizeof(char) * size);
+    FILE *src = fopen(file, "r");
+    int i = 0;
+
+    if (str == NULL || buff == NULL)
+        return (NULL);
+    for (; getline(&buff, &size, src) != -1; i++) {
+        str[i] = malloc(sizeof(char) * (my_strlen(buff) + 1));
+        for (int j = 0; buff[j] != '\0'; j++)
+            str[i][j] = buff[j];
+        str[i][my_strlen(buff)] = '\0';
+        printf("%s", str[i]);
+    }
+    if (i == 0 || check_all_lines(str, core))
+        return (NULL);
     return (str);
 }
