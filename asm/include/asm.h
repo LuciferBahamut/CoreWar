@@ -28,6 +28,10 @@ char **get_data(char *file, core_t *core);
 int get_champ(core_t *core);
 int get_comment(core_t *core);
 
+/* ERROR HANDLING */
+int check_prog(core_t *core);
+int check_instruction(char *instr, int nbr);
+
 /* UTIL FUNCTIONS */
 void my_putchar(char c);
 void my_putchar_error(char c);

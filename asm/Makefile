@@ -13,6 +13,8 @@ SRC	=	src/main.c 			\
 		src/get_data.c			\
 		src/get_champ.c			\
 		src/get_comment.c		\
+		src/check_lines.c		\
+		src/check_instructions.c	\
 		src/print_the_error.c		\
 		$(wildcard util/*.c)
 
