@@ -12,6 +12,17 @@
 #include <fcntl.h>
 #include "asm.h"
 
+static int create_file(core_t *core)
+{
+    int fd = open(core->name, O_WRONLY | O_TRUNC | O_CREAT, 0666);
+
+    if (fd < 0)
+        return (TRUE);
+    write(fd, &core->head, sizeof(header_t));
+    close(fd);
+    return (FALSE);
+}
+
 static int check_file(char *file, core_t *core)
 {
     int fd = open(file, O_RDONLY);
@@ -37,6 +48,8 @@ static int fill_core(core_t *core, char *file)
         return (TRUE);
     if (get_champ(core) || get_comment(core) || check_prog(core))
         return (TRUE);
+    core->head->magic = COREWAR_EXEC_MAGIC;
+    core->head->magic = SWAP_UINT32(core->head->magic);
     return (FALSE);
 }
 
@@ -49,7 +62,7 @@ static int start(char *file)
     core->head = malloc(sizeof(header_t));
     if (core->head == NULL)
         return (ERROR);
-    if (fill_core(core, file))
+    if (fill_core(core, file) || create_file(core))
         return (ERROR);
     return (SUCCESS);
 }

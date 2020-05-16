@@ -8,6 +8,14 @@
 #include <stdlib.h>
 #include "asm.h"
 
+static void del_double_quote(header_t *head)
+{
+    for (int i = 0; head->comment[i] != '\0'; i++)
+        if (head->comment[i] == '"')
+            for (int j = i; head->comment[j + 1] != '\0'; j++)
+                head->comment[j] = head->comment[j + 1];
+}
+
 static int comp_comment(char *str)
 {
     int i = 0;
@@ -67,5 +75,6 @@ int get_comment(core_t *core)
         return (gest_warning(core, pos));
     for (int j = 0; comment[j] != '\0'; j++)
         core->head->comment[j] = comment[j];
+    del_double_quote(core->head);
     return (FALSE);
 }

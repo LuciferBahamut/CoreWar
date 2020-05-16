@@ -8,6 +8,14 @@
 #include <stdlib.h>
 #include "asm.h"
 
+static void del_double_quote(header_t *head)
+{
+    for (int i = 0; head->prog_name[i] != '\0'; i++)
+        if (head->prog_name[i] == '"')
+            for (int j = i; head->prog_name[j + 1] != '\0'; j++)
+                head->prog_name[j] = head->prog_name[j + 1];
+}
+
 static int display_errors(core_t *core, int i)
 {
     if (i == -1)
@@ -71,6 +79,7 @@ int get_champ(core_t *core)
     for (int j = 0; name[j] != '\0'; j++, k++)
         core->head->prog_name[j] = name[j];
     core->head->prog_name[k] = '\0';
+    del_double_quote(core->head);
     free(name);
     return (FALSE);
 }
