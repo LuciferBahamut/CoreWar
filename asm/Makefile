@@ -40,7 +40,9 @@ CFFLAGS	=	tests/unit_tests.c -I./include --coverage -lcriterion
 
 OBJ	=	$(SRC:.c=.o)
 
-all	:	$(OBJ)
+all	:	$(NAME)
+
+$(NAME)	:	$(OBJ)
 		$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(CPPFLAGS) $(LDFLAGS)
 
 tests_run	:
