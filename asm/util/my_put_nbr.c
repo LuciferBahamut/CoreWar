@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** my_put_nbr.c
 ** File description:
-** printf
+** put_nbr
 */
 
 #include "asm.h"

@@ -30,7 +30,6 @@ static char *get_instruction(char *line)
             break;
         temp[i] = line[i];
     }
-    printf("instr = %s\n", temp);
     temp[i] = '\0';
     return (temp);
 }
@@ -51,9 +50,7 @@ static int check_line(core_t *core, char *line, int nbr)
 int check_prog(core_t *core)
 {
     for (int i = 0; core->data[i] != NULL; i++)
-        if (check_line(core, core->data[i], (i + 1))) {
-            printf("there's a prob at line %d\n", i + 1);
+        if (check_line(core, core->data[i], (i + 1)))
             return (TRUE);
-        }
     return (FALSE);
 }

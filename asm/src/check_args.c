@@ -15,11 +15,10 @@ static int check_args_four(core_t *core, char *instr, int inst_nbr, int line)
     case 15 :
         ret = gest_fork_lld_lldi_lfork(core, instr, line);
         break;
-    case 11 :
+    case 16 :
         ret = gest_aff(core, instr, line);
         break;
     }
-    ret = check_args_four(core, instr, inst_nbr, line);
     return (ret);
 }
 
