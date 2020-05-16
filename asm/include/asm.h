@@ -32,15 +32,31 @@ int get_champ(core_t *core);
 int get_comment(core_t *core);
 
 /* ERROR HANDLING */
+int display_error(core_t *core, int line, int nbr, int max);
+char **split_the_args(char *line, char sep, int nbr);
+int get_nbr_args(char *str, char sep);
 int check_prog(core_t *core);
-int check_instruction(char *instr, int nbr);
+int check_args(core_t *core, char *instr, int inst_nbr, int line);
+int check_instruction(core_t *core, char *instr, int nbr);
+
+// check args
+int gest_live(core_t *core, char *instr, int line);
+int gest_fork_lld_lldi_lfork(core_t *core, char *instr, int line);
+int gest_aff(core_t *core, char *instr, int line);
+int gest_sti(core_t *core, char *instr, int line);
+int gest_st(core_t *core, char *instr, int line);
+int gest_add_sub(core_t *core, char *instr, int line);
+int gest_and_or_xor(core_t *core, char *instr, int line);
+int gest_ldi(core_t *core, char *instr, int line);
+int gest_zjmp(core_t *core, char *instr, int line);
+int gest_ld(core_t *core, char *instr, int line);
 
 /* UTIL FUNCTIONS */
 void my_putchar(char c);
 void my_putchar_error(char c);
 void my_putstr(char const *str);
-int my_strlen(char *const str);
-int write_error(char const *str);
+int my_strlen(const char *str);
+int write_error(const char *str);
 int my_strcmp(char const *str1, char const *str2);
 int my_put_nbr_error(int nb);
 int my_put_nbr(int nb);
@@ -60,7 +76,15 @@ static const char ERROR_ARG[] = "this program must take a file as an argument";
 
 // undefined char
 static const char STR_ERROR_CHAR[] = ": Undefined label.\n";
+
+// invalid instruction
 static const char STR_ERROR_INST[] = ": Invalid instruction.\n";
+
+// invalid args
+static const char STR_ERROR_MANY[] = ": Too many arguments given";
+static const char STR_ERROR_MANY2[] = " to the instruction.\n";
+static const char STR_ERROR_FEW[] = ": The argument given to";
+static const char STR_ERROR_FEW2[] = " the instruction is invalid.\n";
 
 // name
 static const char STR_ERROR_NAME[] = ": The program name is too long.\n";

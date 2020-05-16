@@ -15,6 +15,18 @@ SRC	=	src/main.c 			\
 		src/get_comment.c		\
 		src/check_lines.c		\
 		src/check_instructions.c	\
+		src/check_args.c		\
+		src/check_args_bis.c		\
+		src/gest_live.c			\
+		src/gest_sti.c			\
+		src/gest_aff.c			\
+		src/gest_fork_lld_lldi_lfork.c	\
+		src/gest_ldi.c			\
+		src/gest_add_sub.c		\
+		src/gest_and_or_xor.c		\
+		src/gest_st.c			\
+		src/gest_ld.c			\
+		src/gest_zjmp.c			\
 		src/print_the_error.c		\
 		$(wildcard util/*.c)
 

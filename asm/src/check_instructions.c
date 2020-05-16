@@ -49,7 +49,7 @@ static int is_label(char *instr)
     return (FALSE);
 }
 
-int check_instruction(char *instr, int nbr)
+int check_instruction(core_t *core, char *instr, int nbr)
 {
     char **instructions = malloc(sizeof(char *) * 18);
 
@@ -59,8 +59,11 @@ int check_instruction(char *instr, int nbr)
     if (is_label(instr))
         return (FALSE);
     for (int i = 0; instructions[i] != NULL; i++)
-        if (my_strcmp(instr, instructions[i]))
-            return (FALSE);
+        if (my_strcmp(instr, instructions[i])) {
+            free(instructions);
+            return (check_args(core, instr, i, nbr));
+        }
     free(instructions);
+    my_error(core, nbr, STR_ERROR_INST);
     return (TRUE);
 }
