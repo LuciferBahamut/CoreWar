@@ -13,9 +13,6 @@ static int check_args_four(core_t *core, char *instr, int inst_nbr, int line)
     
     switch (inst_nbr) {
     case 15 :
-        ret = gest_fork_lld_lldi_lfork(core, instr, line);
-        break;
-    case 16 :
         ret = gest_aff(core, instr, line);
         break;
     }
@@ -28,10 +25,10 @@ static int check_args_ter(core_t *core, char *instr, int inst_nbr, int line)
 
     switch (inst_nbr) {
     case 10 :
-        ret = gest_ldi(core, instr, line);
+        ret = gest_sti(core, instr, line);
         break;
     case 11 :
-        ret = gest_sti(core, instr, line);
+        ret = gest_fork_lld_lldi_lfork(core, instr, line);
         break;
     case 12 :
         ret = gest_fork_lld_lldi_lfork(core, instr, line);
@@ -53,7 +50,7 @@ static int check_args_bis(core_t *core, char *instr, int inst_nbr, int line)
 
     switch (inst_nbr) {
     case 5 :
-        ret = gest_add_sub(core, instr, line);
+        ret = gest_and_or_xor(core, instr, line);
         break;
     case 6 :
         ret = gest_and_or_xor(core, instr, line);
@@ -62,10 +59,10 @@ static int check_args_bis(core_t *core, char *instr, int inst_nbr, int line)
         ret = gest_and_or_xor(core, instr, line);
         break;
     case 8 :
-        ret = gest_and_or_xor(core, instr, line);
+        ret = gest_zjmp(core, instr, line);
         break;
     case 9 :
-        ret = gest_zjmp(core, instr, line);
+        ret = gest_ldi(core, instr, line);        
         break;
     }
     ret = check_args_ter(core, instr, inst_nbr, line);

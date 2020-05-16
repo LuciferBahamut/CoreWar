@@ -23,11 +23,10 @@ static char **fill_inst(char **instr)
     instr[10] = "sti\0";
     instr[11] = "fork\0";
     instr[12] = "lld\0";
-    instr[13] = "sti\0";
-    instr[14] = "lldi\0";
-    instr[15] = "lfork\0";
-    instr[16] = "aff\0";
-    instr[17] = NULL;
+    instr[13] = "lldi\0";
+    instr[14] = "lfork\0";
+    instr[15] = "aff\0";
+    instr[16] = NULL;
     return (instr);
 }
 
