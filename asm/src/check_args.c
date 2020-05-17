@@ -10,7 +10,7 @@
 static int check_args_four(core_t *core, char *instr, int inst_nbr, int line)
 {
     int ret = FALSE;
-    
+
     switch (inst_nbr) {
     case 15 :
         ret = gest_aff(core, instr, line);
@@ -62,7 +62,7 @@ static int check_args_bis(core_t *core, char *instr, int inst_nbr, int line)
         ret = gest_zjmp(core, instr, line);
         break;
     case 9 :
-        ret = gest_ldi(core, instr, line);        
+        ret = gest_ldi(core, instr, line);
         break;
     }
     ret = check_args_ter(core, instr, inst_nbr, line);
@@ -72,7 +72,7 @@ static int check_args_bis(core_t *core, char *instr, int inst_nbr, int line)
 int check_args(core_t *core, char *instr, int inst_nbr, int line)
 {
     int ret = FALSE;
-    
+
     switch (inst_nbr) {
     case 0 :
         ret = gest_live(core, instr, line);

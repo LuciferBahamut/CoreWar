@@ -18,13 +18,6 @@ int get_nbr_args(char *str, char sep)
     return (nbr);
 }
 
-char **split_the_args(char *line, char sep, int nbr)
-{
-    char **split;
-
-    return (split);
-}
-
 int display_error(core_t *core, int line, int nbr, int max)
 {
     if (nbr < max) {
