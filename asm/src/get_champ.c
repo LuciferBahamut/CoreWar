@@ -10,10 +10,15 @@
 
 static void del_double_quote(header_t *head)
 {
+    int k = 0;
+
     for (int i = 0; head->prog_name[i] != '\0'; i++)
         if (head->prog_name[i] == '"')
             for (int j = i; head->prog_name[j + 1] != '\0'; j++)
                 head->prog_name[j] = head->prog_name[j + 1];
+    for (int i = 0; head->prog_name[i] != '\0'; i++)
+        if (head->prog_name[i] == '\n')
+            head->prog_name[i] = '\0';
 }
 
 static int display_errors(core_t *core, int i)

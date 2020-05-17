@@ -10,10 +10,15 @@
 
 static void del_double_quote(header_t *head)
 {
+    int k = 0;
+
     for (int i = 0; head->comment[i] != '\0'; i++)
         if (head->comment[i] == '"')
             for (int j = i; head->comment[j + 1] != '\0'; j++)
                 head->comment[j] = head->comment[j + 1];
+    for (int i = 0; head->comment[i] != '\0'; i++)
+        if (head->comment[i] == '\n')
+            head->comment[i] = '\0';
 }
 
 static int comp_comment(char *str)

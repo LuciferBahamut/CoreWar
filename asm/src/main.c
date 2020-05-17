@@ -18,7 +18,7 @@ static int create_file(core_t *core)
 
     if (fd < 0)
         return (TRUE);
-    write(fd, &core->head, sizeof(header_t));
+    write(fd, core->head, sizeof(header_t));
     close(fd);
     return (FALSE);
 }
